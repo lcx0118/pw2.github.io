@@ -2,7 +2,8 @@
 <html lang="zh-Hant">
 <head>
   <meta charset="UTF-8">
-  <title>對應查詢系統</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Lights Out Grid</title>
   <style>
     body {
       font-family: Arial, sans-serif;
@@ -12,7 +13,7 @@
 
     .circle-container {
       display: grid;
-      grid-template-columns: repeat(3, 1fr); /* 每行三顆 */
+      grid-template-columns: repeat(3, 1fr); /* gap */
       gap: 15px;
       justify-items: center;
       margin-bottom: 20px;
@@ -45,11 +46,11 @@
   <h1>Black code:1, White code:0</h1>
   
   <div class="circle-container" id="circleContainer">
-    <!-- 圓圈會由 JavaScript 產生 -->
+    <!--  -->
   </div>
 
-  <p id="currentBinary">當前輸入：000000000</p>
-  <p id="result">對應結果將顯示於此</p>
+  <p id="currentBinary">input：000000000</p>
+  <p id="result">reuslt in time</p>
 
   <script>
     const responseMap = {
@@ -571,7 +572,7 @@
     const currentBinaryDisplay = document.getElementById("currentBinary");
     const resultDisplay = document.getElementById("result");
 
-    // 建立 9 個圓圈
+    // grid
     for (let i = 0; i < 9; i++) {
       const circle = document.createElement("div");
       circle.classList.add("circle");
@@ -597,11 +598,11 @@
       resultDisplay.textContent = result ? `Solution：${result}` : "Exception";
     }
 
-    // 初始時執行一次
+    // initialized
     updateResult();
   </script>
 
-  <!-- 🔒 防止檢視原始碼與右鍵 -->
+  <!-- 🔒  -->
   <script>
     document.addEventListener('keydown', function(e) {
       const key = e.key.toLowerCase();
@@ -625,7 +626,7 @@
     });
 
     document.addEventListener('contextmenu', function(e) {
-      e.preventDefault(); // 禁用右鍵選單
+      e.preventDefault(); // option
     });
   </script>
 

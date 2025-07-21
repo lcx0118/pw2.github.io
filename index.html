@@ -651,11 +651,11 @@
       const inverseSolution = result ? getInverseSolution(result.replace("(", "").replace(")", "")) : "13579";
     //   inverseResultDisplay.textContent = `Solution： ${inverseSolution}`;
 if (result) 
-  resultDisplay.innerHTML = `<span class="solution-indicator primary"></span>Solution：${result}`;
+  resultDisplay.innerHTML = `<span class="solution-indicator primary"></span>→${result}`;
 else 
-  resultDisplay.innerHTML = `<span class="solution-indicator primary"></span>Solution：`;
+  resultDisplay.innerHTML = `<span class="solution-indicator primary"></span>→`;
 
-inverseResultDisplay.innerHTML = `<span class="solution-indicator inverse"></span>Solution：${inverseSolution}`;
+inverseResultDisplay.innerHTML = `<span class="solution-indicator inverse"></span>→${inverseSolution}`;
 
 
     }

@@ -39,6 +39,11 @@
       font-size: 1.2em;
       color: #333;
     }
+    #inverseResult {
+      font-size: 1.2em;
+      color: #333;
+      margin-top: 10px;
+    }
     .social-links a {
       margin-right: 20px;
       white-space: nowrap;
@@ -46,6 +51,32 @@
     .social-links a:last-child {
       margin-right: 0;
     }
+    .solution-indicator {
+    display: inline-block;
+    width: 15px;
+    height: 15px;
+    border-radius: 50%;
+    margin-right: 8px;
+    vertical-align: middle;
+    }
+
+    .solution-indicator.primary {
+    background-color: white;
+    border: 2px solid black;
+    }
+
+    .solution-indicator.inverse {
+    background-color: black;
+    border: 2px solid black;
+    }
+
+    #result, #inverseResult {
+    text-align: left;
+    max-width: 200px;
+    margin-left: auto;
+    margin-right: auto;
+    }
+
 
   </style>
 </head>
@@ -59,10 +90,12 @@
 
   <p id="currentBinary">input：000000000</p>
   <p id="result">reuslt in time</p>
+  <p id="inverseResult">Inverse Solution: </p>
+
 
   <script>
     const responseMap = {
-  "000000000": "(Inverse)13579",
+  "000000000": "",
   "000000001": "23479",
   "000000010": "1235",
   "000000011": "14579",
@@ -579,6 +612,7 @@
     const circleContainer = document.getElementById("circleContainer");
     const currentBinaryDisplay = document.getElementById("currentBinary");
     const resultDisplay = document.getElementById("result");
+    const inverseResultDisplay = document.getElementById("inverseResult");
 
     // grid
     for (let i = 0; i < 9; i++) {
@@ -594,6 +628,15 @@
       updateResult();
     }
 
+    function getInverseSolution(result) {
+        const oddDigits = ["1", "3", "5", "7", "9"];
+        const resultDigits = result.split("");
+        const nonOddDigits = resultDigits.filter(d => !oddDigits.includes(d));
+        const missingOddDigits = oddDigits.filter(d => !resultDigits.includes(d));
+        const inverseDigits = nonOddDigits.concat(missingOddDigits).sort();
+        return inverseDigits.join("");
+    }
+
     function updateResult() {
       const circles = document.querySelectorAll(".circle");
       let binary = "";
@@ -603,7 +646,18 @@
 
       currentBinaryDisplay.textContent = `Corresponding ${binary}`;
       const result = responseMap[binary];
-      resultDisplay.textContent = result ? `Solution：${result}` : "Exception";
+    //   resultDisplay.textContent = result ? `Solution：${result}` : "Solution：";
+
+      const inverseSolution = result ? getInverseSolution(result.replace("(", "").replace(")", "")) : "13579";
+    //   inverseResultDisplay.textContent = `Solution： ${inverseSolution}`;
+if (result) 
+  resultDisplay.innerHTML = `<span class="solution-indicator primary"></span>Solution：${result}`;
+else 
+  resultDisplay.innerHTML = `<span class="solution-indicator primary"></span>Solution：`;
+
+inverseResultDisplay.innerHTML = `<span class="solution-indicator inverse"></span>Solution：${inverseSolution}`;
+
+
     }
 
     // initialized

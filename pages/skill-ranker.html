@@ -89,6 +89,10 @@
     flex-shrink: 0;
     align-self: flex-start; /* 圖片維持原比例,不被拉伸 */
   }
+  /* 結果表格:外層可橫向捲動,避免撐爆卡片;長字串可斷行 */
+  #result { overflow-x: auto; }
+  .result-table code { overflow-wrap: anywhere; word-break: break-all; }
+  .result-table td { word-break: break-word; }
   /* 視窗較窄時改成上下排列,圖片放到滿寬 */
   @media (max-width: 700px) {
     .first-card-inner { flex-direction: column; }
